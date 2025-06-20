@@ -19,7 +19,7 @@ import {
   IconUserOff,
   IconUsers,
 } from '@tabler/icons-react'
-import { AudioWaveform, Command, GalleryVerticalEnd } from 'lucide-react'
+import { AudioWaveform, Command, GalleryVerticalEnd, Home } from 'lucide-react'
 import { ClerkLogo } from '@/assets/clerk-logo'
 import { type SidebarData } from '../types'
 
@@ -64,6 +64,11 @@ export const getSidebarData = (t: (key: string) => string): SidebarData => ({
           title: t('nav.apps'),
           url: '/apps',
           icon: IconPackages,
+        },
+        {
+          title: t('nav.real_estate'),
+          url: '/real-estate',
+          icon: Home,
         },
         {
           title: t('nav.chats'),
