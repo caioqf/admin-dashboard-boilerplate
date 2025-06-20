@@ -148,65 +148,6 @@ export default function RealEstate() {
         </Button>
       </div>
 
-      {/* Statistics Cards */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              {t('real_estate.stats.total_properties')}
-            </CardTitle>
-            <Grid className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{stats.total}</div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              {t('real_estate.stats.available_properties')}
-            </CardTitle>
-            <Grid className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{stats.available}</div>
-            <p className="text-xs text-muted-foreground">
-              {((stats.available / stats.total) * 100).toFixed(1)}% do portfólio
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              {t('real_estate.stats.sold_properties')}
-            </CardTitle>
-            <Grid className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{stats.sold}</div>
-            <p className="text-xs text-muted-foreground">
-              {((stats.sold / stats.total) * 100).toFixed(1)}% vendidos
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              {t('real_estate.stats.total_value')}
-            </CardTitle>
-            <Grid className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              R$ {(stats.totalValue / 1000000).toFixed(1)}M
-            </div>
-            <p className="text-xs text-muted-foreground">
-              Média: R$ {(stats.averagePrice / 1000).toFixed(0)}k
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-
       {/* Search and Filters */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-1 items-center space-x-2">
