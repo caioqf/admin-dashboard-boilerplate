@@ -262,7 +262,7 @@ export default function RealEstate() {
       </div>
 
       {/* Two Column Layout: Properties List + Map */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[800px]">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 h-[800px]">
         {/* Left Column - Properties List */}
         <div className="space-y-4">
           <Card className="h-full">
@@ -273,7 +273,7 @@ export default function RealEstate() {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-0">
-              <div className="h-[700px] overflow-y-auto p-4 space-y-4">
+              <div className="h-[700px] overflow-y-auto p-4">
                 {filteredProperties.length === 0 ? (
                   <div className="flex flex-col items-center justify-center py-16">
                     <Grid className="h-12 w-12 text-muted-foreground mb-4" />
@@ -283,13 +283,15 @@ export default function RealEstate() {
                     </p>
                   </div>
                 ) : (
-                  filteredProperties.map((property) => (
-                    <PropertyCard
-                      key={property.id}
-                      property={property}
-                      onSelect={handlePropertySelect}
-                    />
-                  ))
+                  <div className="grid grid-cols-1 2xl:grid-cols-2 gap-3">
+                    {filteredProperties.map((property) => (
+                      <PropertyCard
+                        key={property.id}
+                        property={property}
+                        onSelect={handlePropertySelect}
+                      />
+                    ))}
+                  </div>
                 )}
               </div>
             </CardContent>
