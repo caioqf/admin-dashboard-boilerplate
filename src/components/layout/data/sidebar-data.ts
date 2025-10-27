@@ -18,6 +18,7 @@ import {
   IconUserCog,
   IconUserOff,
   IconUsers,
+  IconUsersGroup,
 } from '@tabler/icons-react'
 import { AudioWaveform, Command, GalleryVerticalEnd } from 'lucide-react'
 import { ClerkLogo } from '@/assets/clerk-logo'
@@ -59,6 +60,11 @@ export const getSidebarData = (t: (key: string) => string): SidebarData => ({
           title: t('nav.tasks'),
           url: '/tasks',
           icon: IconChecklist,
+        },
+        {
+          title: t('nav.leads'),
+          url: '/leads',
+          icon: IconUsersGroup,
         },
         {
           title: t('nav.chats'),
