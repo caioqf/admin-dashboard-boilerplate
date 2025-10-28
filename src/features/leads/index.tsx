@@ -41,6 +41,33 @@ function LeadsContent() {
     )
   }
 
+  if (viewMode === 'kanban') {
+    return (
+      <div className="flex flex-col h-full">
+        <div className="flex-shrink-0 mb-4 flex flex-wrap items-center justify-between space-y-2 gap-x-4">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight">{t('nav.leads')}</h2>
+            <p className="text-muted-foreground">
+              Gerencie e acompanhe seus leads através do pipeline de vendas
+            </p>
+          </div>
+        </div>
+
+        <div className="flex-shrink-0 mb-4">
+          <LeadsToolbar />
+        </div>
+
+        <div className="flex-1 overflow-hidden">
+          <LeadsKanban />
+        </div>
+
+        <LeadsDialogs />
+        <LeadsImportDialog />
+        <ColumnSettingsDialog />
+      </div>
+    )
+  }
+
   return (
     <>
       <div className="mb-2 flex flex-wrap items-center justify-between space-y-2 gap-x-4">
@@ -55,7 +82,7 @@ function LeadsContent() {
       <div className="-mx-4 flex-1 overflow-auto px-4 py-1">
         <div className="space-y-4">
           <LeadsToolbar />
-          {viewMode === 'kanban' ? <LeadsKanban /> : <LeadsTable />}
+          <LeadsTable />
         </div>
       </div>
 
@@ -78,7 +105,7 @@ export default function LeadsPage() {
         </div>
       </Header>
 
-      <Main>
+      <Main fixed>
         <LeadsContent />
       </Main>
     </LeadsProvider>

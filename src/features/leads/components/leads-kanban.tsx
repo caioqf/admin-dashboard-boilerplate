@@ -66,9 +66,9 @@ function SortableColumn({ column, columnLeads, total, formatCurrency, isOverColu
     <div
       ref={setSortableRef}
       style={style}
-      className="flex-shrink-0 w-80 flex flex-col"
+      className="flex-shrink-0 w-80 h-full flex flex-col"
     >
-      <div className="mb-3 space-y-2">
+      <div className="mb-3 space-y-2 flex-shrink-0">
         <div className="flex items-center justify-between">
           <div 
             className="flex items-center gap-2 cursor-grab active:cursor-grabbing"
@@ -90,10 +90,8 @@ function SortableColumn({ column, columnLeads, total, formatCurrency, isOverColu
         </div>
       </div>
 
-      <ScrollArea
-        className="flex-1 rounded-lg border bg-muted/30"
-        style={{ height: 'calc(100vh - 300px)' }}
-      >
+      <div className="flex-1 min-h-0 rounded-lg border bg-muted/30 overflow-hidden">
+        <ScrollArea className="h-full">
         <SortableContext
           items={columnLeads.map((lead) => lead.id)}
           strategy={verticalListSortingStrategy}
@@ -101,7 +99,7 @@ function SortableColumn({ column, columnLeads, total, formatCurrency, isOverColu
           <div
             ref={setDroppableRef}
             data-column-id={column.id}
-            className={`flex-1 space-y-3 transition-colors p-2 rounded-lg ${
+            className={`space-y-3 transition-colors p-3 min-h-full ${
               isOver ? 'bg-primary/5' : ''
             }`}
           >
@@ -123,7 +121,8 @@ function SortableColumn({ column, columnLeads, total, formatCurrency, isOverColu
             )}
           </div>
         </SortableContext>
-      </ScrollArea>
+        </ScrollArea>
+      </div>
     </div>
   )
 }
@@ -253,27 +252,29 @@ export function LeadsKanban() {
       onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
     >
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2">
-          <h2 className="text-lg font-semibold">Pipeline de Vendas</h2>
-          <Badge variant="outline">{filteredLeads.length} leads</Badge>
+      <div className="flex flex-col h-full">
+        <div className="flex items-center justify-between mb-4 flex-shrink-0">
+          <div className="flex items-center gap-2">
+            <h2 className="text-lg font-semibold">Pipeline de Vendas</h2>
+            <Badge variant="outline">{filteredLeads.length} leads</Badge>
+          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setOpen('column-settings')}
+          >
+            <IconSettings className="h-4 w-4 mr-2" />
+            Gerenciar Colunas
+          </Button>
         </div>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => setOpen('column-settings')}
-        >
-          <IconSettings className="h-4 w-4 mr-2" />
-          Gerenciar Colunas
-        </Button>
-      </div>
 
-      <ScrollArea className="w-full">
+        <div className="flex-1 min-h-0 overflow-hidden">
+          <ScrollArea className="h-full w-full">
         <SortableContext
           items={localColumns.map((col) => `column-${col.id}`)}
           strategy={horizontalListSortingStrategy}
         >
-          <div className="flex gap-4 pb-4">
+          <div className="flex gap-4 pb-4 h-full">
             {localColumns.map((column) => {
               const columnLeads = leadsByColumn[column.id] || []
               const total = getColumnTotal(column.id)
@@ -297,7 +298,9 @@ export function LeadsKanban() {
           </div>
         </SortableContext>
         <ScrollBar orientation="horizontal" />
-      </ScrollArea>
+          </ScrollArea>
+        </div>
+      </div>
 
       <DragOverlay>
         {activeType === 'lead' && activeLead ? (
